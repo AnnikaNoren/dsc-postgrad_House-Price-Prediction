@@ -4,7 +4,9 @@
 
 ## Project Goal
 
-My project aims to predict the sale price of houses. By predicting the sale price of houses, a prospective buyer could have a good understanding of whether the house they are looking to buy is valued at about what you'd expect, given the data provided on the home. Conversely, a prospective seller could use this tool to determine what price to list for their home.
+My project aims to predict the sale price of houses.
+
+By predicting the sale price of houses, a prospective buyer could have a good understanding of whether the house they are looking to buy is valued at about what you'd expect, given the data provided on the home. Conversely, a prospective seller could use this tool to determine what price to list for their home.
 
 ## Findings
 
