@@ -42,7 +42,43 @@ In the future I would like to first use more of the categorical features, and pe
 
 I'd also like to explore capping my training data so that I create a model that only works on houses priced up to a certain point. This would narrow the target audience of my model, but at the same time Could make it work better on houses that are priced within a specific range. Thus, if I received a result from my model outside that range I could know that my model is likely not accurately pricing that home and thus should be handled using different techniques or models. 
 
+## Repository Guide
+
+- **README.md**: The top-level README 
+- **data/**: Data folder, which is not included in this repository
+- **images/**: Images folder, containing all referenced image files
+- **EDA-Modeling-Evaluation.ipynb**: Main Jupyter notebook, which contains the data exploration, preparation, modeling and evaluation for this project
+- **House-Price-Prediction_Presentation.pdf**: PDF Version of a presentation given on this project
+
+## Reproduction Instructions
+
+This project uses:
+
+- [Anaconda](https://www.anaconda.com/), a package and environment management tool
+- Python 3.6.9, with the following additional packages/libraries:
+
+    - [Pandas 0.25.1](https://pandas.pydata.org/)
+    - [NumPy 1.16.5](https://numpy.org/)
+    - [Matplotlib 3.1.1](https://matplotlib.org/)
+    - [Seaborn 0.9.0](https://seaborn.pydata.org/)
+    - [Scikit-Learn 0.22.1](https://scikit-learn.org/stable/)
+    - [Eli5 0.10.1](https://eli5.readthedocs.io/en/latest/overview.html)
+
+If you would like follow the analysis locally and have the above tools:
+
+1. Fork and clone this repository
+2. Go to the Kaggle competition page and download the data files
+3. Save the `train.csv` data file into a `data/` folder which is at the same level as the notebook
+
+You should then be able to run the exploration and analysis in the provided [EDA-Modeling-Evaluation Jupyter Notebook](https://github.com/learn-co-curriculum/dsc-postgrad_House-Price-Prediction/blob/master/EDA-Modeling-Evaluation.ipynb).
+
 ## Sources:
 
 - [Data Source: Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data)
 - [README Header Image Source: Lending Tree](https://www.lendingtree.com/home/mortgage/how-to-buy-a-house-when-your-current-home-hasnt-sold/)
+
+## Contact Information
+
+With questions or feedback on this repository, please reach out via:
+- [GitHub](https://github.com/learn-co-curriculum)
+- [LinkedIn](https://www.linkedin.com/school/the-flatiron-school/)
