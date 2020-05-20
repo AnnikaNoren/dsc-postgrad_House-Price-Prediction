@@ -4,7 +4,26 @@
 
 ## Project Goal
 
-My project aims to predict the sale price of houses. By predicting the sale price of houses, a prospective buyer could have a good understanding of whether the house they are looking to buy is valued at about what you'd expect, given the data provided on the home. Conversely, a prospective seller could use this tool to determine what price to list for their home.
+My project aims to predict the sale price of houses. 
+
+## Data Source and Data Exploration
+
+This data comes from a [Kaggle competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/) which provides details about homes in Ames, Iowa. 
+
+The target variable shows that there are some outliers in the data, which are homes that were sold at much higher prices than most of the other homes in the dataset.
+
+I used 33 columns for my analysis, which included variables about: 
+
+ - the age and quality of the house
+ - the total size of both the lot and the house itself
+ - the number of bedrooms and bathrooms
+ - additional features like porches, garages, basements, etc.
+ 
+The most correlated feature to the target, which was also the most informative feature in my preferred model, is the Overall Quality of the house (`OverallQual`).
+ 
+--- 
+
+By predicting the sale price of houses, a prospective buyer could have a good understanding of whether the house they are looking to buy is valued at about what you'd expect, given the data provided on the home. Conversely, a prospective seller could use this tool to determine what price to list for their home.
 
 ## Findings
 
