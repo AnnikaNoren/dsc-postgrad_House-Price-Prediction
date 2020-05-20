@@ -18,10 +18,10 @@ The target variable shows that there are some outliers in the data, which are ho
 
 I used 33 columns for my analysis, which included variables about: 
 
-    - the age and quality of the house
-    - the total size of both the lot and the house itself
-    - the number of bedrooms and bathrooms
-    - additional features like porches, garages, basements, etc.
+ - the age and quality of the house
+ - the total size of both the lot and the house itself
+ - the number of bedrooms and bathrooms
+ - additional features like porches, garages, basements, etc.
 
 ## Data Preparation
 
