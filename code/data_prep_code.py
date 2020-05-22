@@ -1,4 +1,4 @@
-
+import pandas as pd
 
 def address_nas(df):
     
@@ -20,5 +20,9 @@ def address_nas(df):
     df.drop(columns=["MiscFeature"], inplace = True)
     
     df.LotFrontage.fillna(0,inplace=True)
+    
+    test = df.columns.tolist()
+    redundant = [k for k in test if ('Qual' in k or 'Cond' in k) and ("Overall" not in k) and (k!= "SaleCondition")]
+    df.drop(columns = redundant, inplace = True )
     
     return df
