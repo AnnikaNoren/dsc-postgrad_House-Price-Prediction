@@ -25,4 +25,17 @@ def address_nas(df):
     redundant = [k for k in test if ('Qual' in k or 'Cond' in k) and ("Overall" not in k) and (k!= "SaleCondition")]
     df.drop(columns = redundant, inplace = True )
     
+    df['HasFirePlace'] = 0
+    df.loc[(df.Fireplaces > 0), 'HasFirePlace'] = 1
+    df.drop(columns = ['Fireplaces', 'FireplaceQu'], inplace=True)
+    
+    df['GarageAreaPerCar'] = df.GarageArea/df.GarageCars
+    df['HasGarage'] = 0
+    df.loc[(df.GarageArea > 0), 'HasGarage'] = 1
+    df.drop(columns = ['GarageArea'], inplace=True)
+    
+    df['GarageType_u'] = 'Other'
+    df.loc[(df.GarageType == 'Attchd'), 'GarageType_u'] = 'Attached'
+    df.loc[(df.GarageType == 'Attchd'), 'GarageType_u'] = 'Attached'
+    
     return df
