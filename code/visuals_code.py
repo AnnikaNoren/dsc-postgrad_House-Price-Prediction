@@ -40,7 +40,7 @@ map_var_names = {'HouseAge':'Age of House',
                  'YrSold':'Year of Sale',
                  'BsmtHalfBath': 'Number of Half Baths in basement',
                  'MoSold':'Month Sold',
-                 'HasRemod':'Has Been Remodelled',
+                 'HasRemod':'Has Been Remodeled',
                  'GasAirHeat': 'Heat Forced Air',
                  'HasPool':'Has A Pool',
                  'HasBasement':"House has Basement",
@@ -66,12 +66,18 @@ map_var_names = {'HouseAge':'Age of House',
                  'AverageRoomSize': 'Sqft of Average Room',
                  'GarageArea':'Sqft of Garage', 
                  '1stFlrSF':'Sqft of First Floor', 
-                 'GarageCars':"Garage fits how many Cars", 
+                 'GarageCars':"Garage Cars Capacity", 
                  'TotalBsmtSF': "Sqft of Basement", 
                  'GrLivArea': 'Total living sapce in Sqft',
                  'OverallQual':'Overall Quality Ranking of Home', 
                  'SalePrice':'Price of Sale', 
                  'HasAlley':'Property connected to Alley'}
+
+def remap_index(test_df):
+    test_df2 = test_df.copy
+    test_df2['two'] = test_df2.index.to_series().map(map_var_names)
+    test_df2.reset_index(['two'], inplace=True)
+    return test_df2
 
 def dist_var_one(series_var,filename):
 
