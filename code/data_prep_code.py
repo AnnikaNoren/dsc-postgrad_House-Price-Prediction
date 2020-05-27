@@ -38,12 +38,7 @@ def address_nas(test):
     # create % basement finished
     df['BsmtPerFinished'] = (df.BsmtFinSF1 + df.BsmtFinSF2)/df.TotalBsmtSF
     df.BsmtPerFinished.fillna(0,inplace=True)
-    
-    # Create condensed version of Garage Type
-#     df['GarageType_u'] = 'Other'
-#     df.loc[(df.GarageType == 'Attchd'), 'GarageType_u'] = 'Attached'
-#     df.loc[(df.GarageType == 'Detchd'), 'GarageType_u'] = 'Detached'
-    
+       
     df['HasCentralAir'] = np.where(df.CentralAir=='Y',1,0)
     df['GasAirHeat']  = np.where(df.Heating == 'GasA', 1, 0)
     df['SBboxElectric'] = np.where(df.Electrical == 'SBrkr', 1, 0)
@@ -51,7 +46,6 @@ def address_nas(test):
     df['HasRemod'] = np.where(df.YearBuilt==df.YearRemodAdd, 1, 0)
     
     df['HouseAge'] = df.YrSold - df.YearBuilt
-    #df['GarageAge'] = df.YrSold -  df.GarageYrBlt
     df['TimeSinceRemodel'] = df.YrSold - df.YearRemodAdd
 
     df['RemodFiveYrs'] = np.where((df.YearBuilt!=df.YearRemodAdd )&( df.HouseAge > 5) & (df.TimeSinceRemodel <=5),1,0)
@@ -87,5 +81,10 @@ def address_nas(test):
     df.drop(columns = type_col, inplace = True )
     
     df.drop(columns = porch_vars, inplace = True)
+    
+    return df
+
+def drop_cats(test):
+    df = test.select_dtypes(exclude='object')
     
     return df
