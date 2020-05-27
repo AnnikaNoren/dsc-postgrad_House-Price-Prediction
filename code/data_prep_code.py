@@ -35,6 +35,12 @@ def address_nas(test):
     # Create ratio of space per car
     df['GarageAreaPerCar'] = df.GarageArea/df.GarageCars
     
+    # Create ratio of space per room
+    df['AverageRoomSize'] = df.GrLivArea/df.TotRmsAbvGrd
+    
+    # Create hasfinishedbsmt
+    df['HasFinishedBsmt'] = np.where(df.BsmtFinSF1 > 0, 1, 0)
+    
     # create % basement finished
     df['BsmtPerFinished'] = (df.BsmtFinSF1 + df.BsmtFinSF2)/df.TotalBsmtSF
     df.BsmtPerFinished.fillna(0,inplace=True)
