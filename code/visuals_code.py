@@ -13,7 +13,7 @@ matplotlib_axes_logger.setLevel('ERROR')
 
 
 # Set specific parameters for the visualizations
-large = 22; med = 16; small = 12
+large = 32; med = 16; small = 12
 params = {'axes.titlesize': large,
           'legend.fontsize': med,
           'figure.figsize': (16, 10),
@@ -103,6 +103,38 @@ def dist_var_one(series_var,filename):
     plt.close(fig) 
     pass
 
+
+def dist_var_hist_box(series_var,filename):
+
+    fig = plt.figure(figsize=(16, 10), dpi=80) 
+    # Creates one subplot within our figure and uses the classes fig and ax
+    fig, (ax_box, ax_hist) = plt.subplots(2, sharex=True, gridspec_kw={"height_ratios": (.15, .85)}, dpi= 80, facecolor='w', edgecolor='k')
+    
+    sns.boxplot(series_var, ax=ax_box)
+    sns.distplot(series_var, ax=ax_hist)
+    #ax.set_ylim(0, 100)
+
+    ax_hist.xaxis.set_major_locator(ticker.MultipleLocator(100000.00))
+    ax_hist.xaxis.set_minor_locator(ticker.MultipleLocator(50000))
+    ax_hist.xaxis.set_major_formatter(ticker.StrMethodFormatter('${x:,.0f}'))
+    ax_hist.set_xlabel("House Price at Sale")
+    
+    ax_hist.yaxis.set_major_formatter(ticker.PercentFormatter())
+    ax_hist.yaxis.set_major_locator(ticker.NullLocator())
+
+    ax_box.set(xlabel='')
+
+    fig.suptitle('Distribution of Housing Sales in Ames, Iowa', fontsize=26)
+
+    file_name = filename
+    path = './images/'+file_name+'.png'
+    plt.savefig(path)
+    plt.close(fig) 
+    pass
+
+
+
+
 def good_heat_map(test):
     fig = plt.figure(figsize=(8,11))
     fig, ax = plt.subplots(figsize=(8,11), facecolor='w', edgecolor='k')
@@ -122,7 +154,7 @@ def scatter_explore(test):
     # Creates one subplot within our figure and uses the classes fig and ax
     fig, ax = plt.subplots(figsize=(16, 10), dpi= 80, facecolor='w', edgecolor='k')
     chart = sns.scatterplot(x='GrLivArea', y='SalePrice', data = test,
-                            hue='OverallQual', legend='full', alpha = .7,
+                            hue=test.OverallQual.values, legend='full', alpha = .7,
                             palette="BrBG")
 
     ax.yaxis.set_major_locator(ticker.MultipleLocator(100000.00))
@@ -133,9 +165,11 @@ def scatter_explore(test):
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(100))
     #ax.xaxis.set_major_formatter(ticker.StrMethodFormatter('{x} sqft'))
 
-    ax.set_title("The Positive Correlations between Price, Sqft, and Quality Rating \n in Home Sales")
+    fig.suptitle("The Positive Correlations between Home Sale Price,\n Sq Footage and Quality Rating", fontsize=26)
     ax.set_xlabel("Total Square Feet")
     ax.set_ylabel("Sale Price")
+    
+    ax.get_legend().set_title("Overall Quality Ranking")
     
     plt.tight_layout()
     file_name = "scatter_price"
