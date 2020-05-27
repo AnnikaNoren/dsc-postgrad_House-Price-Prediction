@@ -32,13 +32,14 @@ plt.rcParams.update(params)
 
 map_var_names = {'HouseAge':'Age of House',
                  'TimeSinceRemodel':'Time Since Remodel',
+                 'LotFrontage':'Feet of Street Adjacent to Lot',
                  'HasFence':'Has a Fence',
                  'KitchenAbvGr':'Number of Kitchens',
-                 'MSSubClass':'Dwelling Code',
+                 'MSSubClass':'Dwelling Class Code',
                  'OverallCond':'Overall House Condition',
                  'RemodFiveYrs':'Remodeled in Last 5 Years',
                  'YrSold':'Year of Sale',
-                 'BsmtHalfBath': 'Number of Half Baths in basement',
+                 'BsmtHalfBath': 'Number of Half Baths in Basement',
                  'MoSold':'Month Sold',
                  'HasRemod':'Has Been Remodeled',
                  'GasAirHeat': 'Heat Forced Air',
@@ -50,9 +51,9 @@ map_var_names = {'HouseAge':'Age of House',
                  'BsmtUnfSF':'Sqft of Unfinished Basement',
                  'BedroomAbvGr': "Count of Bedrooms Above Ground",
                  'BsmtFullBath': "Number of Full Baths in Basment",
-                 'SBboxElectric':'Standard Circuit Breakers',
+                 'SBboxElectric':'Standard Circuit Breaker',
                  'HasGarage': 'Property has Garage', 
-                 'HasCentralAir': "Home has Central air", 
+                 'HasCentralAir': "Home has Central Air", 
                  'LotArea':'Size of Lot in sqft', 
                  'HasPorch':"Home has Porch", 
                  'HasDeck':"Home has Deck",
@@ -68,10 +69,11 @@ map_var_names = {'HouseAge':'Age of House',
                  '1stFlrSF':'Sqft of First Floor', 
                  'GarageCars':"Garage Cars Capacity", 
                  'TotalBsmtSF': "Sqft of Basement", 
-                 'GrLivArea': 'Total living sapce in Sqft',
-                 'OverallQual':'Overall Quality Ranking of Home', 
+                 'GrLivArea': 'Total living space in Sqft',
+                 'OverallQual':'Overall Home Quality Ranking', 
                  'SalePrice':'Price of Sale', 
-                 'HasAlley':'Property connected to Alley'}
+                 'HasAlley':'Property connected to Alley',
+                'SalePrice':"Sale Price"}
 
 def remap_index(test_df):
     test_df2 = test_df.copy
@@ -136,9 +138,10 @@ def dist_var_hist_box(series_var,filename):
 
 
 def good_heat_map(test):
-    fig = plt.figure(figsize=(8,11))
-    fig, ax = plt.subplots(figsize=(8,11), facecolor='w', edgecolor='k')
-    chart=sns.heatmap(test.corr()[['SalePrice']].sort_values(by='SalePrice'), cmap = 'RdYlGn',
+    fig = plt.figure(figsize=(11,11))
+    fig, ax = plt.subplots(figsize=(11,11), facecolor='w', edgecolor='k')
+    test.rename(columns = map_var_names, inplace=True )
+    chart=sns.heatmap(test.corr()[['Sale Price']].sort_values(by='Sale Price',ascending=False), cmap = 'RdYlGn',
                 xticklabels=True, yticklabels=True, ax=ax, square=True)
     ax.set_title("Correlation of Each Independent Variable \n with the Target Variable \n")
     plt.tight_layout()
@@ -180,11 +183,11 @@ def scatter_explore(test):
 
 
 def full_heat_map(test):
-    fig = plt.figure(figsize=(18, 12), dpi=80) 
+    fig = plt.figure(figsize=(22, 18), dpi=80) 
     # Creates one subplot within our figure and uses the classes fig and ax
-    fig, ax = plt.subplots(figsize=(18, 12), dpi= 80, facecolor='w', edgecolor='k')
-
-    chart=sns.heatmap(test.corr(), cmap = 'RdYlGn',
+    fig, ax = plt.subplots(figsize=(22, 18), dpi= 80, facecolor='w', edgecolor='k')
+    test2 = test.rename(columns = map_var_names)
+    chart=sns.heatmap(test2.corr(), cmap = 'RdYlGn',
                 xticklabels=True, yticklabels=True, ax=ax, square=True)
     ax.set_title("Correlation Between Independent Variables")
     plt.tight_layout()
