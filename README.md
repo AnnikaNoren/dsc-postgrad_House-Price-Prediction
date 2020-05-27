@@ -4,11 +4,10 @@
 
 ## Project Goal
 
-My project aims to predict the sale price of houses. By predicting the sale price of houses, a prospective buyer could have a good understanding of whether the house they are looking to buy is valued at about what you'd expect, given the data provided on the home. Conversely, a prospective seller could use this tool to determine what price to list for their home.
+My project aims to predict the sale price of houses. By predicting the sale price of houses, a prospective seller could have a good understanding of the value of the home, given its attributes. In addition, a prospective seller could strategicaly focus on home enhancements that would have the greatest ROI at time of sale. 
 
 ## Findings
-
-My current preferred model is able to explain about 78% of the variance in the sale prices of homes, and on average predicts a sale price that is $24,244 away from the actual sale price.
+My current preferred model is able to explain about 86% of the variance in the sale prices of homes, and on average predicts a sale price that is 18,001 away from the actual sale price
 
 ## Data Source and Data Exploration
 
@@ -16,7 +15,7 @@ This data comes from a [Kaggle competition](https://www.kaggle.com/c/house-price
 
 The target variable shows that there are some outliers in the data, which are homes that were sold at much higher prices than most of the other homes in the dataset.
 
-I used 33 columns for my analysis, which included variables about: 
+I used 42 columns for my analysis, which included variables about: 
 
  - the age and quality of the house
  - the total size of both the lot and the house itself
@@ -27,21 +26,20 @@ The most correlated feature to the target, which was also the most informative f
 
 ## Data Preparation
 
-Because I used only numeric columns, I did not perform any encoding techniques. However, I did scale my data, using Sci-Kit Learn's Robust Scaler.
+Because I used only numeric columns, I did not perform any encoding techniques. However, I did convert a few discrete variables such as "number of fireplaces" to "has fireplace"
 
 ## Modeling
 
 I began with a baseline that predicts only the mean house price from the training data for each house. My final model is a Ridge regression model, which uses L-2 regularization to manage the multicollinearity between the features used in the model.
 
-The most important feature to my preferred model was the Overall Quality of the home, according to permutation importance:
 
-![feature importance from eli5 output for the ridge regression model](images/feature-importance-ridge.png)
+![model_comparison](./images/summary_stats.png)
 
 ## Evaluation
 
 I used both the Coefficient of Determination (R2 Score) and Mean Absolute Error to evaluate my models. I wanted to make sure these two very different metrics were evaluated so I could see how my models are trending overall. The benefit of R2 Score is I can see how well my model explains the variance of the target, the house sale price, while the Mean Absolute Error is able to explain how off my predictions were on average in real dollar terms. I trained my model on two-thirds of the data for which I knew the actual sale price, then tested my results on the remaining third.
 
-My final preferred model, a Ridge regression model, achieved an R2 Score of `.78` and a Mean Absolute Error of `24,244` on the test set. In real terms, this means the Ridge regression model explains about 78% of the variance of the target variable, the house sale price, and that on average my predictions are about $24,244 away from the actual value. 
+My final preferred model, a Ridge regression model, achieved an R2 Score of `.8662` and a Mean Absolute Error of `24,244` on the test set. In real terms, this means the Ridge regression model explains about 86% of the variance of the target variable, the house sale price, and that on average my predictions are about 18,001 away from the actual value. 
 
 ## Next Steps
 
@@ -51,11 +49,16 @@ I'd also like to explore capping my training data so that I create a model that 
 
 ## Repository Guide
 
-- **README.md**: The top-level README 
-- **data/**: Data folder, which is not included in this repository
-- **images/**: Images folder, containing all referenced image files
-- **EDA-Modeling-Evaluation.ipynb**: Main Jupyter notebook, which contains the data exploration, preparation, modeling and evaluation for this project
-- **House-Price-Prediction_Presentation.pdf**: PDF Version of a presentation given on this project
+```
+├── code                                       Code folder, data cleaning and visualization functions
+├── data                                       Data folder, which is not included in this repository
+├── images                                     Images folder, containing all referenced image files
+├── EDA-Modeling-Evaluation.ipynb              Main Jupyter notebook, contains analysis
+├── House-Price-Prediction_Presentation.pdf    PDF Version of project presentation
+├── README.md                                  The top-level README 
+└── __init__.py                                python package file
+
+```
 
 ## Reproduction Instructions
 
