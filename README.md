@@ -33,7 +33,7 @@ Because I used only numeric columns, I did not perform any encoding techniques. 
 I began with a baseline that predicts only the mean house price from the training data for each house. My final model is a Ridge regression model, which uses L-2 regularization to manage the multicollinearity between the features used in the model.
 
 
-![model_comparison2](./images/summary_stats.png)
+![model_comparison3](./images/summary_stats.png)
 
 ## Evaluation
 
